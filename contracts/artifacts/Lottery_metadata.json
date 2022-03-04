@@ -37,6 +37,13 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "pickWinner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -50,6 +57,19 @@
 						"internalType": "address payable",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "random",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -88,11 +108,11 @@
 	},
 	"sources": {
 		"contracts/lottery.sol": {
-			"keccak256": "0x1a98c31798b75eb17a7a6847cf5f82b3892ead2120fb6b7fbdf8f3b92b0776c5",
+			"keccak256": "0xb2dfe8200239ea8479452bef2c2a8032c00963eeb79057cf2be51d3493372fdd",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://b061e80af494a3c389115bc2b16424ae4dc409603ee56452194c7e5833653ecf",
-				"dweb:/ipfs/QmWNfQmjnSgn9scfFnKqeAkj6YS5KNK6vzcbj2Z7KpruQ4"
+				"bzz-raw://e79e1fc8df51d175dbd8d1ee0be8586028fb56d715d884938cee409db75dcadb",
+				"dweb:/ipfs/QmTMhppgaJEd2HoGpENpcMSsi4WsW5vXNUsYj87q4ih4u1"
 			]
 		}
 	},
