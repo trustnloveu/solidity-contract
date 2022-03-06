@@ -44,6 +44,11 @@ contract Auction {
         _;
     }
 
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not Allowed. Owner Only");
+        _;
+    }
+
 
     function min(uint a, uint b) pure internal returns (uint) {
         if (a <= b) {
@@ -70,5 +75,9 @@ contract Auction {
             highestBindingBid = min(currentBid, bids[highestBidder] + bidIncrement);
             highestBidder = payable(msg.sender);
         }
+    }
+
+    function cancelAuction() public onlyOwner {
+        auctionState = State.Canceled;        
     }
 }
