@@ -56,10 +56,10 @@ contract Auction {
 
     function placeBid() public payable notOwner afterStart beforeEnd {
         require(auctionState == State.Running, "Auction is not open.");
-        require(msg.value >= 100, "You have to transfer ");
+        require(msg.value >= 100, "You have to transfer more then 100.");
 
         uint currentBid = bids[msg.sender] + msg.value;
-        require(currentBid > highestBindingBid);
+        require(currentBid > highestBindingBid, "You didn't meet proper auction bid.");
 
         bids[msg.sender] = currentBid;
         
