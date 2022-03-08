@@ -23,9 +23,9 @@ contract Auction {
         owner = payable(msg.sender);
         auctionState = State.Running;
         startBlock = block.number;
-        endBlock = startBlock + 40320; // = a week, block is created in every 15 seconds
+        endBlock = startBlock + 3; // = a week, block is created in every 15 seconds
         ipfsHash = "";
-        bidIncrement = 100;
+        bidIncrement = 1000000000000000000; // = 1 ether
     }
 
 
@@ -112,6 +112,9 @@ contract Auction {
                 }
             }
         }
+
+        // Reset
+        bids[recipient] = 0;
 
         // Transfer ETH
         recipient.transfer(value);
