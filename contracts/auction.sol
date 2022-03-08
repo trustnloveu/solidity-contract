@@ -80,4 +80,40 @@ contract Auction {
     function cancelAuction() public onlyOwner {
         auctionState = State.Canceled;        
     }
+
+    function finalizeAuction() public {
+        require(auctionState == State.Canceled || block.number > endBlock, "Auction has been ended.");
+        require(msg.sender == owner || bids[msg.sender] > 0, "Member Only.");
+
+        address payable recipient;
+        uint value;
+
+        // When the auction was canceled
+        if (auctionState == State.Canceled) {
+            recipient = payable(msg.sender);
+            value = bids[msg.sender];
+        }
+        // When the auction ended (Not canceled)
+        else {
+            // Owner
+            if (msg.sender == owner) {
+                recipient = owner;
+                value = highestBindingBid;
+            }
+            // Bidder
+            else {
+                if (msg.sender == highestBidder) {
+                    recipient = highestBidder;
+                    value = bids[highestBidder] - highestBindingBid;
+                }
+                else {
+                    recipient = payable(msg.sender);
+                    value = bids[msg.sender];
+                }
+            }
+        }
+
+        // Transfer ETH
+        recipient.transfer(value);
+    }
 }
